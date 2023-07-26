@@ -1,5 +1,5 @@
 import express from "express";
-import { postUser /* updateHighScore */ } from "./controllers/controller1.js";
+import { postUser, updateScore } from "./controllers/controller1.js";
 import cors from "cors";
 
 const app = express();
@@ -24,13 +24,14 @@ app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
 
-// app.put("/users", async (req, res) => {
-//   const { highScore, username } = req.body;
-//   updateHighScore(highScore, username, res)
-//     .then((savedScore) => {
-//       console.log("APP.TSX SUCCESSFULLY SAVED SCORE:::::", savedScore);
-//     })
-//     .catch((err) => {
-//       console.log("APP.TSX ERROR SAVING SCORE:::::", err);
-//     });
-// });
+app.put("/users", async (req, res) => {
+  const { timer, username } = req.body;
+  try {
+    const updatedScore = await updateScore(timer, username);
+    console.log("APP.JS SUCCESSFULLY UPDATED SCORE:::::", updatedScore);
+    res.json(updatedScore);
+  } catch (err) {
+    console.log("APP.JS ERROR SAVING SCORE:::::", err);
+    res.status(500).send("Error updating score.");
+  }
+});

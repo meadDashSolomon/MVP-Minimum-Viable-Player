@@ -38,9 +38,17 @@ export const saveUser = async (username, password) => {
   }
 };
 
-// exports.saveScore = async (highScore, username) => {
-//   return User.updateOne(
-//     { username: username },
-//     { $set: { highScore: highScore } }
-//   );
-// };
+export const saveScore = async (timer, username) => {
+  try {
+    const updatedScore = await User.updateOne(
+      { username: username },
+      { $set: { highScore: timer } },
+      { new: true }
+    );
+    console.log("MODEL SUCCESSFULLY UPDATED SCORE");
+    return updatedScore;
+  } catch (err) {
+    console.error("ERROR UPDATING SCORE IN MODEL:::::", err);
+    throw err;
+  }
+};

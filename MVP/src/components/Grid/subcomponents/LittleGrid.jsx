@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Search from "./Search";
 
-const LittleGrid = () => {
+const LittleGrid = ({ stopTimer }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [selectedCell, setSelectedCell] = useState(null);
   const [cellColors, setCellColors] = useState(
@@ -9,11 +9,14 @@ const LittleGrid = () => {
   );
 
   const updateColor = (cell, isCorrect) => {
-    setCellColors((prevColors) => {
-      const newColors = [...prevColors];
-      newColors[cell - 1] = isCorrect ? "bg-green-500" : "bg-red-500";
-      return newColors;
-    });
+    const updatedColors = [...cellColors];
+    updatedColors[cell - 1] = isCorrect ? "bg-green-500" : "bg-red-500";
+
+    setCellColors(updatedColors);
+
+    if (updatedColors.every((color) => color === "bg-green-500")) {
+      stopTimer();
+    }
   };
 
   return (
