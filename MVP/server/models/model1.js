@@ -26,9 +26,16 @@ db.once("open", () => console.log("MongoDB connected..."));
 
 const User = mongoose.model("User", UserSchema);
 
-export const saveUser = (async) => {
-  const user = new User({ username, password });
-  return user.save();
+export const saveUser = async (username, password) => {
+  try {
+    const user = new User({ username, password });
+    const savedUser = await user.save();
+    console.log("MODEL SAVED USER SUCCESSFULLY");
+    return savedUser;
+  } catch (err) {
+    console.error("ERROR SAVING USER IN MODEL.JS:::::", err);
+    throw err;
+  }
 };
 
 // exports.saveScore = async (highScore, username) => {

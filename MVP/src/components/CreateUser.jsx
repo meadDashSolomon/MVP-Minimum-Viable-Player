@@ -9,12 +9,15 @@ const CreateUser = ({ handleProfileCreated }) => {
     e.preventDefault();
 
     try {
-      await axios.post("/users", { username, password });
-      alert("User created successfully.");
-      handleProfileCreated();
+      const response = await axios.post("http://localhost:3000/users", {
+        username,
+        password,
+      });
+      if (response.status === 200) {
+        handleProfileCreated();
+      }
     } catch (err) {
       console.log(err);
-      alert("Error creating user.");
     }
   };
 

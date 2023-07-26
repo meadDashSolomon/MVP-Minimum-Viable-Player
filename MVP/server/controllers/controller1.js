@@ -2,8 +2,9 @@ import { saveUser /*, saveScore*/ } from "../models/model1.js";
 
 export const postUser = async (username, password, res) => {
   try {
-    await saveUser(username, password);
-    res.send("User created successfully.");
+    const savedUser = await saveUser(username, password);
+    console.log("CONTROLLER SUCCESSFULLY POSTED USER:::::", savedUser);
+    return savedUser;
   } catch (err) {
     console.log("CONTROLLER ERROR POSTING USER:::::", err);
     res.status(500).send("Error creating user.");
