@@ -51,7 +51,7 @@ function App() {
       )}
       {/* <RulesModal /> */}
       <Header />
-      <BigGrid stopTimer={stopTimer} />
+      <BigGrid stopTimer={stopTimer} timer={timer} />
     </div>
   );
 }
