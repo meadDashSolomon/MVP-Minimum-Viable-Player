@@ -14,9 +14,9 @@ function App() {
 
   return (
     <div className="bg-black pb-20">
-      {!hasProfile && (
+      {/* {!hasProfile && (
         <CreateUser handleProfileCreated={handleProfileCreated} />
-      )}
+      )} */}
       {/* <RulesModal /> */}
       <Header />
       <BigGrid />
