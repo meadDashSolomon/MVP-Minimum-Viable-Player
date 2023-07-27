@@ -5,7 +5,7 @@ import Timer from "./subcomponents/Timer";
 
 const BigGrid = ({ timer, stopTimer }) => {
   return (
-    <div className="grid grid-cols-9 grid-rows-4">
+    <div className="grid grid-cols-9 grid-rows-4 my-10">
       <TopCriteria />
       <LeftCriteria />
       <LittleGrid stopTimer={stopTimer} />

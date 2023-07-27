@@ -55,7 +55,9 @@ export const saveScore = async (timer, username) => {
 
 export const getLeaders = async () => {
   try {
-    const topScores = await User.find().sort({ highScore: -1 }).limit(10);
+    const topScores = await User.find({ highScore: { $ne: 0 } })
+      .sort({ highScore: 1 })
+      .limit(10);
     console.log("MODEL SUCCESSFULLY GOT LEADERS");
     return topScores;
   } catch (err) {

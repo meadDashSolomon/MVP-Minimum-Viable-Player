@@ -17,7 +17,7 @@ const LeaderBoard = () => {
 
   return (
     <div className="p-4 rounded-lg shadow-lg bg-gray-800 text-white text-center font-mono text-2xl">
-      <h2>Leaderboard</h2>
+      <h2>Scoreboard</h2>
       {scores.map((user, index) => (
         <div key={index}>
           {index + 1}. {user.username}: {user.highScore}
