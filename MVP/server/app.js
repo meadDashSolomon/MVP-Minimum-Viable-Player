@@ -1,5 +1,9 @@
 import express from "express";
-import { postUser, updateScore } from "./controllers/controller1.js";
+import {
+  postUser,
+  updateScore,
+  fetchLeaders,
+} from "./controllers/controller1.js";
 import cors from "cors";
 
 const app = express();
@@ -33,5 +37,16 @@ app.put("/users", async (req, res) => {
   } catch (err) {
     console.log("APP.JS ERROR SAVING SCORE:::::", err);
     res.status(500).send("Error updating score.");
+  }
+});
+
+app.get("/users", async (req, res) => {
+  try {
+    const fetchedLeaders = await fetchLeaders();
+    console.log("APP.JS SUCCESSFULLY FETCHED LEADERS:::::", fetchedLeaders);
+    res.json(fetchedLeaders);
+  } catch (err) {
+    console.log("APP.JS ERROR FETCHING LEADERS:::::", err);
+    res.status(500).send("Error fetching leaders.");
   }
 });

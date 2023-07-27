@@ -1,4 +1,4 @@
-import { saveUser, saveScore } from "../models/model1.js";
+import { saveUser, saveScore, getLeaders } from "../models/model1.js";
 
 export const postUser = async (username, password) => {
   try {
@@ -19,5 +19,16 @@ export const updateScore = async (timer, username) => {
   } catch (err) {
     console.log("CONTROLLER ERROR UPDATED SCORE:::::", err);
     res.status(500).send("Error updating score.");
+  }
+};
+
+export const fetchLeaders = async () => {
+  try {
+    const topScores = await getLeaders();
+    console.log("CONTROLLER SUCCESSFULLY GOT LEADERS:::::", topScores);
+    return topScores;
+  } catch (err) {
+    console.log("CONTROLLER ERROR GETTING LEADERS:::::", err);
+    res.status(500).send("Error getting leaders.");
   }
 };

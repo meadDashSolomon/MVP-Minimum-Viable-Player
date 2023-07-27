@@ -5,6 +5,7 @@ import BigGrid from "./components/Grid/BigGrid";
 import CreateUser from "./components/CreateUser";
 import axios from "axios";
 import "./index.css";
+import LeaderBoard from "./components/Grid/LeaderBoard";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -52,6 +53,7 @@ function App() {
       {/* <RulesModal /> */}
       <Header />
       <BigGrid stopTimer={stopTimer} timer={timer} />
+      <LeaderBoard />
     </div>
   );
 }

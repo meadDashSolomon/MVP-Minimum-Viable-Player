@@ -52,3 +52,14 @@ export const saveScore = async (timer, username) => {
     throw err;
   }
 };
+
+export const getLeaders = async () => {
+  try {
+    const topScores = await User.find().sort({ highScore: -1 }).limit(10);
+    console.log("MODEL SUCCESSFULLY GOT LEADERS");
+    return topScores;
+  } catch (err) {
+    console.error("ERROR FETCHING LEADERBOARD:::::", err);
+    throw err;
+  }
+};
